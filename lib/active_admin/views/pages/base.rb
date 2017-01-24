@@ -24,11 +24,12 @@ module ActiveAdmin
           within @head do
             insert_tag Arbre::HTML::Title, [title, render_or_call_method_or_proc_on(self, active_admin_namespace.site_title)].compact.join(" | ")
             active_admin_application.stylesheets.each do |style, options|
+              options.merge!({ 'data-turbolinks-track' => true })
               text_node stylesheet_link_tag(style, options).html_safe
             end
 
             active_admin_application.javascripts.each do |path|
-              text_node(javascript_include_tag(path))
+              text_node(javascript_include_tag(path, 'data-turbolinks-track' => true))
             end
 
             if active_admin_namespace.favicon
