@@ -29,7 +29,7 @@ module ActiveAdmin
       private
 
       def site_title_with_link
-        helpers.link_to(site_title_content, @namespace.site_title_link)
+        helpers.link_to(site_title_content, @namespace.site_title_link, 'data-no-turbolinks' => true)
       end
 
       def site_title_content
